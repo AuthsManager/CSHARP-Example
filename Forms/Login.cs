@@ -12,12 +12,12 @@ namespace C__Example
 
         }
 
-        private async void BtnLogin_Click(object sender, EventArgs e)
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            bool userExists = await Auth.Login(username, password);
+            bool userExists = AuthManagerWrapper.AuthManager_CheckUserExists(username, password, Program.ownerid);
             if (userExists)
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -32,12 +32,12 @@ namespace C__Example
             }
         }
 
-        private async void BtnLicenseLogin_Click(object sender, EventArgs e)
+        private void BtnLicenseLogin_Click(object sender, EventArgs e)
         {
             string license = txtLicense.Text;
-            string hwid = Utils.GetHWID();
+            string hwid = AuthManagerWrapper.GetHWID();
 
-            bool licenseIsValid = await Auth.License(license, hwid);
+            bool licenseIsValid = AuthManagerWrapper.AuthManager_CheckLicense(license, hwid, Program.ownerid);
             if (licenseIsValid)
             {
                 MessageBox.Show("License Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -52,22 +52,21 @@ namespace C__Example
             }
         }
 
-        private async void BtnRegister_Click(object sender, EventArgs e)
+        private void BtnRegister_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text;
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string license = txtLicense.Text;
 
-            if (!Utils.ValidateInput(email, username, password))
+            if (!AuthManagerWrapper.AuthManager_ValidateInput(username, password))
             {
-                MessageBox.Show("Invalid input. Please check your email, username, and password and try again.",
+                MessageBox.Show("Invalid input. Please check your username and password and try again.",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string hwid = Utils.GetHWID();
-            bool registrationSuccess = await Auth.Register(email, username, password, license, hwid);
+            string hwid = AuthManagerWrapper.GetHWID();
+            bool registrationSuccess = AuthManagerWrapper.AuthManager_RegisterUser(username, password, license, hwid, Program.ownerid);
 
             MessageBox.Show(registrationSuccess ? "Registration Successful!" : "Error during registration.",
                 registrationSuccess ? "Success" : "Error",

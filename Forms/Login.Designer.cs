@@ -10,14 +10,12 @@ namespace C__Example
         private TextBox txtUsername;
         private TextBox txtPassword;
         private TextBox txtLicense;
-        private TextBox txtEmail;
         private Button btnLogin;
         private Button btnLicenseLogin;
         private Button btnRegister;
         private Label lblUsername;
         private Label lblPassword;
         private Label lblLicense;
-        private Label lblEmail;
 
         private void InitializeComponent()
         {
@@ -29,8 +27,6 @@ namespace C__Example
             this.lblLicense = new Label();
             this.txtLicense = new TextBox();
             this.btnLicenseLogin = new Button();
-            this.lblEmail = new Label();
-            this.txtEmail = new TextBox();
             this.btnRegister = new Button();
 
             // 
@@ -103,22 +99,6 @@ namespace C__Example
             this.btnLicenseLogin.Click += new EventHandler(this.BtnLicenseLogin_Click);
 
             // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new Point(50, 300);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new Size(32, 13);
-            this.lblEmail.Text = "Email";
-
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new Point(150, 300);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new Size(200, 20);
-
-            // 
             // btnRegister
             // 
             this.btnRegister.Location = new Point(150, 350);
@@ -140,8 +120,6 @@ namespace C__Example
             this.Controls.Add(this.lblLicense);
             this.Controls.Add(this.txtLicense);
             this.Controls.Add(this.btnLicenseLogin);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.btnRegister);
             this.Name = "LoginForm";
             this.Text = "Login Form";
